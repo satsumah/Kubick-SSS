@@ -73,7 +73,7 @@ with open('N7256A.csv', newline='') as csvfile:
         except ValueError as err:
             print("Bad data passed - {0}".format(err))
 
-with open('N7256A_output.csv', 'w', newline='') as csvfile:
+with open('output.csv', 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     for row in logentries:
         csvwriter.writerow(row)

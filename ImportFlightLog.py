@@ -25,10 +25,12 @@ print("d1 = ", d1)
 logentries = []
 
 # Change these before running
-startingEntry = 1000
-aircraftID = 18
+startingEntry = 0
+aircraftID = 0
+infile = ''
+outfile = ''
 
-with open('N7256A.csv', newline='') as csvfile:
+with open(infile, newline='') as csvfile:
     csvreader = csv.reader(csvfile, quotechar='"')
     next(csvreader)
     for row in csvreader:
@@ -49,7 +51,8 @@ with open('N7256A.csv', newline='') as csvfile:
             flightTypes = "Initial Entries"
             notes = row[15]
             initials = "ZZ-Import"
-            dateEntered = d1    
+            dateEntered = d1
+
             logentries.append([
                 startingEntry,
                 aircraftID,
@@ -68,12 +71,13 @@ with open('N7256A.csv', newline='') as csvfile:
                 initials,
                 dateEntered]
             )
+        
         except TypeError:
             print("Invalid typing -- is the script setup properly?")
         except ValueError as err:
             print("Bad data passed - {0}".format(err))
 
-with open('N7256A_output.csv', 'w', newline='') as csvfile:
+with open(outfile, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     for row in logentries:
         csvwriter.writerow(row)
